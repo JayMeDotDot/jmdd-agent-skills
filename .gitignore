@@ -1,0 +1,23 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Editor and IDE configuration
+.vscode/
+.idea/
+*.swp
+*~
+*.swo
+
+# Dependency directories
+node_modules/
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+out/
+
+# Log files
+*.log
