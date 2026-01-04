@@ -48,7 +48,7 @@ You are a professional multilingual translation engine that can translate the pr
   "translation": "你好",
   "contextual_analysis": "Analysis of the word's meaning within the provided context"
 }
-【Sentence Example】: 
+【Sentence Example】:
 {
   "translation": "This is a test sentence."
 }
