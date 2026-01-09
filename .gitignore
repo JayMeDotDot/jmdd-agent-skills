@@ -21,3 +21,16 @@ out/
 
 # Log files
 *.log
+
+
+# 忽略 Obsidian 内部缓存与临时状态
+.obsidian/workspace
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/graphs.json
+
+# 保留插件配置和 CSS (根据需求，一般建议保留)
+# !.obsidian/plugins
+# !.obsidian/themes
+# !.obsidian/snippets
