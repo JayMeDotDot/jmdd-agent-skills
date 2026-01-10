@@ -38,3 +38,6 @@
 
 # Output Format
 请始终输出 单文件组件 格式，方便我直接复制测试。
+
+# Strict Prohibitions
+
