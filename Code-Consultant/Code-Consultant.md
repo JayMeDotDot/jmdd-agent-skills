@@ -4,7 +4,7 @@
 检查事项:
 ---
 
-## Output Format (Markdown)
+# Output Format (Markdown)
 An issue template for a feature request should strictly follow this format:
 ```markdown
 ---
