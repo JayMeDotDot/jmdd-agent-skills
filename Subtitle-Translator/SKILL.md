@@ -1,5 +1,5 @@
 ---
-name: Subtitle-Translator
+name: subtitle-translator
 description: Translates subtitle files into a target language, generating both a target-only version and a bilingual version.
 ---
 
