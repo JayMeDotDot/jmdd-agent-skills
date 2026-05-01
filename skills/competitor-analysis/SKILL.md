@@ -6,124 +6,225 @@ description:
 
 # Competitor Analysis
 
-## 7-Layer Analysis
+Analyze competitor data the user has collected to produce a structured
+comparison report with differentiation opportunities. The analysis adapts
+its dimensions to the product domain.
 
-| Layer | What to Analyze | Data Source |
-|-------|----------------|-------------|
-| 1. **Product** | Features, UX, quality | Screenshots, free trial |
-| 2. **Pricing** | Plans, pricing model, hidden costs | Pricing page, sales call |
-| 3. **Positioning** | Messaging, tagline, ICP | Website, ads |
-| 4. **Traction** | Users, revenue, growth | Web search, press, funding |
-| 5. **Reviews** | Strengths, weaknesses from users | G2, Capterra, App Store |
-| 6. **Content** | Blog, social, SEO strategy | Website, social profiles |
-| 7. **Team** | Size, key hires, background | LinkedIn, About page |
+## Scope Constraint
 
-## Feature Matrix
+Write only to `docs/competitor-analysis/`. Reading other files, searching
+the web, and running commands for context are fine. Do not change files
+outside this directory unless the user explicitly asks.
 
-### Structure
+## Workflow
+
+### 1. Intake — Understand Context Before Analyzing
+
+Before starting analysis, establish:
+
+- **What is the user building?** Product type, target audience, stage
+- **What is the analysis goal?** Find differentiation, validate an idea,
+  prepare a pitch, inform a pivot, etc.
+- **What data is available?** Check for
+  `docs/competitor-analysis/competitors.md`
+
+| Scenario | Behavior |
+|----------|----------|
+| `competitors.md` exists | Read it, confirm you understand the competitors listed, then proceed |
+| `competitors.md` does not exist | Ask the user to describe their competitors or provide the data; create the file from what they give you |
+| Data is sparse | Note which analysis dimensions you can cover and which you cannot; do not fabricate data |
+| Returning to an existing analysis | Read the current result document first, then continue from there |
+
+### 2. Determine Analysis Dimensions
+
+The analysis framework adapts to the domain. Start from these common
+dimensions and drop, add, or rename as the product demands:
+
+| Dimension | What to Analyze | Typical Sources |
+|-----------|----------------|-----------------|
+| **Product / Features** | Core features, UX quality, platform coverage | User-provided data, public pages |
+| **Pricing** | Plans, model, hidden costs, free tier | Pricing pages |
+| **User Feedback** | Praise, complaints, switching reasons, requests | App stores, review sites, forums |
+| **Positioning** | Messaging, target audience, brand voice | Websites, ads, landing pages |
+| **Traction** | Downloads, ratings count, growth signals | Public metrics, press |
+
+Not every dimension applies. A hardware product needs supply chain and
+distribution. A local service needs geography and reputation. Choose
+dimensions that serve the user's analysis goal.
+
+### 3. Run the Analysis
+
+For each dimension, produce:
+
+1. **Comparison** — structured table or matrix
+2. **So What** — what this comparison means for the user's product
+
+Do not stop at data presentation. Every comparison section must end with
+actionable implications.
+
+### 4. Synthesize Differentiation Opportunities
+
+After individual dimensions, produce a synthesis section:
+
+- **Gaps everyone misses** — features or approaches no competitor covers
+- **Common weaknesses** — complaints that appear across multiple
+  competitors (= strongest opportunities)
+- **Over-served areas** — where competitors are clustered and
+  differentiation is hard
+- **Recommended positioning** — where the user's product should
+  differentiate based on the evidence
+
+### 5. Output
+
+Write to `docs/competitor-analysis/competitor-analysis-result.md`.
+If the file already exists, update it.
+
+## Analysis Formats
+
+Use these formats as structural guidance. Adapt column names, row items,
+and specifics to the actual domain and competitors.
+
+### Feature Matrix
 
 ```markdown
-| Feature | Your Product | Competitor A | Competitor B | Competitor C |
-|---------|:---:|:---:|:---:|:---:|
-| Real-time collaboration | ✅ | ✅ | ❌ | ✅ |
-| API access | ✅ | Paid only | ✅ | ❌ |
-| SSO/SAML | ✅ | Enterprise | ✅ | Enterprise |
-| Custom reports | ✅ | Limited | ✅ | ❌ |
-| Mobile app | ✅ | iOS only | ✅ | ✅ |
-| Free tier | ✅ (unlimited) | ✅ (3 users) | ❌ | ✅ (1 project) |
-| Integrations | 50+ | 100+ | 30+ | 20+ |
+| Feature | Competitor A | Competitor B | Competitor C |
+|---------|:---:|:---:|:---:|
+| [Feature 1] | ✅ | ❌ | ⚠️ Partial |
+| [Feature 2] | ✅ | ✅ | ❌ |
 ```
 
-### Rules
-
+Symbols:
 - ✅ = Full support
 - ⚠️ or "Partial" = Limited or conditional
 - ❌ = Not available
-- Note conditions: "Paid only", "Enterprise tier", "Beta"
-- Lead with features where YOU win
-- Be honest about competitor strengths — credibility matters
+- Note conditions when they matter: "Paid only", "Beta", "iOS only"
 
-## Pricing Comparison
-
-### Structure
+### Pricing Comparison
 
 ```markdown
-| | Your Product | Competitor A | Competitor B |
+| | Competitor A | Competitor B | Competitor C |
 |---------|:---:|:---:|:---:|
-| **Free tier** | Yes, 5 users | Yes, 3 users | No |
-| **Starter** | $10/user/mo | $15/user/mo | $12/user/mo |
-| **Pro** | $25/user/mo | $30/user/mo | $29/user/mo |
-| **Enterprise** | Custom | Custom | $50/user/mo |
-| **Billing** | Monthly/Annual | Annual only | Monthly/Annual |
-| **Annual discount** | 20% | 15% | 25% |
-| **Min seats** | 1 | 5 | 3 |
-| **Hidden costs** | None | Setup fee $500 | API calls metered |
+| **Free tier** | Yes, 3 users | No | Yes, 1 project |
+| **Base plan** | $10/user/mo | $12/user/mo | $15/mo flat |
+| **Hidden costs** | Setup fee | API metered | None |
 ```
 
-### What to Look For
+Look for: minimum seats, annual-only billing, feature gating between
+tiers, overage charges, lock-in periods.
 
-- Minimum seat requirements
-- Annual-only billing (reduces flexibility)
-- Feature gating between tiers
-- Overage charges
-- Setup/onboarding fees
-- Contract lock-in periods
+### User Feedback Summary
 
-## SWOT Analysis
+For each competitor, extract patterns from reviews and comments:
 
-Create a SWOT for each competitor:
+| Category | Findings |
+|----------|---------|
+| **Most praised** | What do happy users highlight? |
+| **Most complained** | What do unhappy users say? (= your opportunity) |
+| **Switching reasons** | Why do users leave? |
+| **Feature requests** | What's missing that users want? |
+
+When the user provides raw review data, distill it into patterns rather
+than listing every individual comment. Quantify when possible ("7 of 12
+negative reviews mention slow sync").
+
+### SWOT (Per Competitor)
 
 ```markdown
-### Competitor A — SWOT
+### [Competitor Name] — SWOT
 
 | Strengths | Weaknesses |
 |-----------|------------|
-| • Strong brand recognition | • Slow feature development |
-| • Large integration ecosystem | • Complex onboarding (30+ min) |
-| • Enterprise sales team | • No free tier |
+| • [point] | • [point] |
 
 | Opportunities | Threats |
-|--------------|---------|
-| • AI features not yet shipped | • New AI-native competitors |
-| • Expanding into mid-market | • Customer complaints about pricing |
-| • International markets untapped | • Key engineer departures (LinkedIn) |
+|---------------|---------|
+| • [point] | • [point] |
 ```
 
-## Review Mining
+### Positioning Map
 
-### Where to Find Reviews
+When there are enough competitors (3+), create a positioning map using
+two axes that matter most for the domain. Represent it as a text diagram
+or a Mermaid quadrant chart.
 
-| Platform | Best For | URL Pattern |
-|----------|----------|-------------|
-| G2 | B2B SaaS | g2.com/products/[product]/reviews |
-| Capterra | Business software | capterra.com/software/[id]/reviews |
-| App Store | iOS apps | apps.apple.com |
-| Google Play | Android apps | play.google.com |
-| Product Hunt | Launches | producthunt.com/posts/[product] |
-| Reddit | Honest opinions | reddit.com/r/[relevant-sub] |
+Example axes: Price vs Feature Depth, Simplicity vs Power, Consumer vs
+Enterprise, Niche vs Broad.
 
-### What to Extract
+## Result Document Shape
 
-| Category | Look For |
-|----------|---------|
-| **Most praised** | What features do happy users mention most? |
-| **Most complained** | What do unhappy users say? (= your opportunity) |
-| **Switching reasons** | Why do users leave? What triggers switching? |
-| **Feature requests** | What's missing that users want? |
-| **Comparison mentions** | When users compare, what do they say? |
+```markdown
+# Competitive Analysis: [Product/Domain]
 
-## Workflow
-1. read `docs/competitor-analysis/competitors.md`
-2. according the rules and format listed, analysis the competitors
-3. if `docs/competitor-analysis/competitor-analysis-result.md` already exists, update it, otherwise create it.
+> One-line summary of the competitive landscape
 
-## Common Mistakes
+**Analysis date**: [date]
+**Analysis goal**: [what the user wants to learn]
+**Competitors analyzed**: [list]
 
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| Only looking at features | Misses positioning, pricing, traction | Use the 7-layer framework |
-| Biased analysis | Loses credibility | Be honest about competitor strengths |
-| Outdated data | Wrong conclusions | Date all research, refresh quarterly |
-| Too many competitors | Analysis paralysis | Focus on top 3-5 direct competitors |
-| No "so what" | Data without insight | End each section with implications for you |
-| Feature-only comparison | Doesn't show positioning | Include pricing, reviews, positioning map |
+## Landscape Overview
+
+[Brief narrative of the competitive landscape — who the players are,
+how the market is shaped, where it's headed]
+
+## Feature Comparison
+
+[Matrix + implications]
+
+## Pricing Comparison
+
+[Table + implications]
+
+## User Feedback Analysis
+
+[Per-competitor summary + cross-competitor patterns]
+
+## SWOT
+
+[Per-competitor SWOT]
+
+## Positioning Map
+
+[Visual + interpretation]
+
+## Differentiation Opportunities
+
+[Synthesis: gaps, common weaknesses, over-served areas,
+recommended positioning]
+
+## Recommendations
+
+[Concrete next steps for the user's product based on the analysis]
+```
+
+Use only the sections the data supports. Do not force sections with no
+substance.
+
+## Data Quality Rules
+
+- **Do not fabricate data**. If a dimension lacks data, say so and skip
+  it or mark it as needing more research.
+- **Mark confidence levels** when information is inferred rather than
+  directly stated. Use "[inferred]" or "[approximate]" inline.
+- **Date the analysis**. Pricing and features change. The document
+  should record when the data was gathered.
+- **Cite sources** when the user provides them. If the user pastes raw
+  review data, reference it.
+
+## Behavior
+
+**Language**: Match the language of the user's request for both the
+conversation and the output document.
+
+**Honesty**: Be honest about competitor strengths. A report that
+downplays competitors loses credibility and misleads the user's
+strategy.
+
+**Focus**: Concentrate on direct competitors (typically 3–5). If the
+user lists more, ask which ones matter most or group them into tiers.
+
+**Actionability**: Every section should connect back to the user's
+product decision. Pure description without "so what" is not enough.
+
+**Scope**: If the user's data only covers some dimensions, analyze what
+you have. Note what's missing and suggest where to find it, but do not
+block on incomplete data.

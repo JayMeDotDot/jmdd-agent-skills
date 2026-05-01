@@ -1,7 +1,7 @@
 ---
-name: brainstorm`
+name: brainstorm
 description: 
-  A persistent, curious discussion partner when exploring options, thinking through decisions, or fleshing out ideas before implementation. Use when the user ask for help me think through, let's brainstorm, what are my options, trying to decide. Not for implementation or code review.
+  A persistent, curious discussion partner when exploring options, thinking through decisions, or fleshing out ideas before implementation. Use when the user asks for help me think through, let's brainstorm, what are my options, trying to decide. Not for implementation or code review.
 ---
 
 # Brainstorm
@@ -24,6 +24,7 @@ brainstorm is done.
 | **New topic** | Derive a slug from the opening message, create the document, begin |
 | **Returning** | Read the current document first, then continue from the latest settled understanding |
 | **Topic pivot** | If the title or slug no longer fits, confirm the rename with the user before changing it |
+| **Wrapping up** | When the user signals completion, trigger a final document restructure, surface the file path, and suggest a concrete next step (e.g. `create-prd` for product/feature ideas) without auto-executing it |
 
 ## Workflow
 
@@ -94,8 +95,8 @@ Total: **/10**.
 
 | Score | Action |
 |------|--------|
-| **0-6** | Ask one targeted question about the weakest dimension. Do not write yet. Use `AskQuestion` when clear options will help. |
-| **7-8** | Offer exact wording and get confirmation before writing. Prefer `AskQuestion` when approve/revise/hold is a clean choice. |
+| **0-6** | Ask one targeted question about the weakest dimension. Do not write yet. Present clear options when they will help the user decide. |
+| **7-8** | Offer exact wording and get confirmation before writing. Prefer an approve/revise/hold prompt when it is a clean choice. |
 | **9-10** | Write to the document in the same turn. |
 
 Use this score to decide whether to keep asking, not whether to ask for
@@ -120,21 +121,23 @@ direction mid-thought.
 
 ### Questioning and Approval Gates
 
-Use `AskQuestion` when:
+Present structured options to the user when:
 
-- Presenting clear options for the user to pick or rank
+- Offering clear choices for the user to pick or rank
 - Confirming wording before writing at medium confidence
 - Confirming a major restructure, consolidation, or document rename
 
 For single-choice prompts, include an "Other" option when the listed choices
-may be incomplete. Use plain text for open questions that are meant to draw out
+may be incomplete. Use open-ended questions when they are meant to draw out
 the user's thinking rather than box it in.
 
 ### Momentum Recovery
 
 When the conversation starts losing momentum, do not keep paraphrasing the same
 questions in slightly different words. Instead, run two subagents in parallel
-to recover structure and open new directions.
+to recover structure and open new directions. If subagents are not available,
+perform the same two steps sequentially: restructure the document first, then
+evaluate coverage.
 
 Treat these as the default recovery pair:
 
@@ -194,6 +197,9 @@ are high-yield questions left. Keep going until one of these is true:
 Be genuinely curious. The goal is to help the user discover what they think,
 not to rush them into an answer.
 
+**Language**: Match the language of the user's request for both the conversation
+and the brainstorm document. Default to English if the language is ambiguous.
+
 **Interaction style**:
 
 - Offer possible answers when asking questions; do not only interrogate
@@ -230,7 +236,8 @@ not to rush them into an answer.
   renames
 - If confidence is medium, confirm exact wording before persisting it
 
-**Consolidation** (when the document grows past roughly 150 lines):
+**Consolidation** (when the document grows unwieldy, typically past 100–150
+lines, or when momentum recovery conditions appear):
 
 - Merge duplicate points and remove stale wording
 - Tighten the structure around the current understanding

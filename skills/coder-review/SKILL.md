@@ -1,79 +1,148 @@
 ---
 name: code-review
-description: Use when reviewing PRs, diffs, or code changes. Covers correctness, security, quality, and project-specific patterns.
+description: Use when reviewing PRs, diffs, or code changes. Covers correctness, performance, quality, compatibility, and issue tracking.
 ---
+
 # Code Reviewer
-A comprehensive code review skill that analyzes pull requests and code changes for quality, security, maintainability, and best practices.
+
+A code review skill that analyzes pull requests and code changes for correctness, performance, quality, maintainability, and best practices.
 
 ## Before You Start
 
-1. **Get changed files**
-   ```bash
-   git diff main...HEAD --name-only
-   git log main...HEAD --oneline
-   ```
+### 1. Get the Diff
 
-2. **Get the diff**
-   ```bash
-   git diff main...HEAD
-   ```
+```bash
+# Find the base branch (check which remote branch this was branched from)
+git log --oneline -10
+git rev-parse --abbrev-ref HEAD
 
-3. **Understand project context**
-   - Read relevant documentation
-   - Check existing patterns in similar files
-   - Identify project-specific conventions
+# Get changed files and diff (replace BASE_BRANCH with actual base branch)
+git diff BASE_BRANCH...HEAD --name-only
+git diff BASE_BRANCH...HEAD
+```
+
+If the base branch is unclear, ask the user.
+
+### 2. Understand Project Context
+
+- Read relevant documentation
+- Check existing patterns in similar files
+- Identify project-specific conventions (linting, naming, structure)
+
+### 3. Check for Linked Issue
+
+Look for issue references in branch name, commit messages, or PR description:
+
+```bash
+# Check branch name for issue number (e.g., feat/123-add-login, fix-#456)
+git rev-parse --abbrev-ref HEAD
+
+# Check recent commit messages for issue references
+git log BASE_BRANCH...HEAD --oneline
+```
 
 ## Checklist
 
 ### Correctness
-- [ ] Logic is sound and matches the requirements
-- [ ] Edge cases are handled
-- [ ] Error handling is appropriate
-- [ ] No obvious bugs or typos
+
+- [ ] Logic is sound and matches the stated requirements or issue description
+- [ ] Edge cases are handled (null/undefined, empty collections, boundary values, concurrent access)
+- [ ] Error handling is appropriate — errors are caught, logged, or propagated correctly
+- [ ] No obvious bugs, typos, or off-by-one errors
 
 ### Security
-- [ ] No sensitive data (API keys, tokens, credentials)
-- [ ] No hardcoded secrets — use environment variables
-- [ ] Input validation and sanitization
-- [ ] SQL injection prevention
-- [ ] XSS prevention (for frontend)
-- [ ] Authentication/authorization checks
-- [ ] Safe handling of user data
+
+- [ ] No obvious security issues introduced by this change
+- If the change touches auth, encryption, user input handling, or access control, run `security-auditor` for a deep review
 
 ### Performance
-- [ ] No N+1 queries
-- [ ] Appropriate caching
-- [ ] Efficient algorithms
-- [ ] No unnecessary computations
-- [ ] Memory efficiency
 
-###  Code Quality
-- [ ] Follows DRY principle
-- [ ] Follows KISS principle
-- [ ] Appropriate abstractions
-- [ ] Clear naming conventions
-- [ ] Proper typing (if TypeScript)
+- [ ] No N+1 queries or unbounded loops over data from external sources
+- [ ] No unnecessary heavy computation in hot paths
+- [ ] Large data sets are paginated or streamed, not loaded entirely into memory
+
+### Code Quality
+
+- [ ] Follows DRY principle — no copy-pasted logic
+- [ ] Follows KISS principle — no over-engineering for current requirements
+- [ ] Appropriate abstractions — not too deep, not too shallow
+- [ ] Clear naming conventions — variables, functions, and files convey intent
+- [ ] Proper typing where the project uses a type system
+
+### Compatibility
+
+- [ ] Public API signatures are not broken without a migration path
+- [ ] Database schema changes are backward-compatible or have a migration plan
+- [ ] Config or environment variable changes are documented
+- [ ] No removal of exported functions, types, or constants that other code may depend on
 
 ### Testing
+
 - [ ] Tests cover new functionality
-- [ ] Tests cover edge cases
-- [ ] Test assertions are meaningful
-- [ ] No brittle tests
+- [ ] Tests cover edge cases and failure paths
+- [ ] Test assertions are meaningful — not just "no error thrown"
+- [ ] No brittle tests (hardcoded dates, order-dependent, flaky)
 
 ### Documentation
-- [ ] Complex logic is explained
+
+- [ ] Complex or non-obvious logic is explained with comments
 - [ ] Public APIs have documentation
-- [ ] JSDoc/TSDoc for functions
-- [ ] README updated if needed
+- [ ] README updated if behavior, setup, or config changed
 
 ### Maintainability
-- [ ] Code is readable
-- [ ] Consistent style
-- [ ] Modular design
-- [ ] Separation of concerns
+
+- [ ] Code is readable without needing the author to explain it
+- [ ] Consistent with existing project style
+- [ ] Modular design — changes are localized, not scattered
+- [ ] Separation of concerns — no mixing of unrelated responsibilities
+
+## Issue Tracking
+
+### If an Issue is Linked
+
+Read the linked issue content. Then evaluate:
+
+- [ ] **Scope match** — The changes address what the issue describes, no more and no less
+- [ ] **Acceptance criteria** — All acceptance criteria or requirements from the issue are met
+- [ ] **Completeness** — No TODO/FIXME left that the issue expected to be resolved
+- [ ] **Edge cases from issue** — Any edge cases mentioned in the issue discussion are handled
+
+Include an **Issue Completion** section in the report:
+
+```markdown
+## Issue Completion
+- **Issue**: #123 — Issue title
+- **Status**: Fully addressed / Partially addressed / Not addressed
+- **Covered**: List what was completed
+- **Missing**: List what was not completed (if any)
+```
+
+### If No Issue is Linked
+
+Flag this in the report and recommend creating an issue:
+
+```markdown
+## Issue Tracking
+> No linked issue found for this change.
+
+Recommend creating an issue to:
+- Document the problem or feature this change addresses
+- Provide context for future maintainers
+- Enable tracking and traceability
+
+Suggested issue title: "..." (infer from the diff)
+```
+
+## Reporting
+
+### Severity Guidance
+
+- **Critical**: Breaks existing functionality, causes data loss, or blocks deployment
+- **High**: Significant bug, logic error, or missing requirement that should be fixed before merge
+- **Medium**: Code quality concern, minor bug, or improvement that can be a follow-up
+- **Low**: Style nit, naming suggestion, or optional enhancement
 
 ### Output Format
-Use this structured format for review feedback:
 
 ```markdown
 # Code Review
@@ -102,6 +171,9 @@ Consider fixing, can be done in follow-up.
 Nice to have improvements.
 
 - [ ] **Issue Title**: Description with file:line reference
+
+## Issue Completion
+(See Issue Tracking section above)
 
 ## Positive Highlights
 What was done well in this PR.
