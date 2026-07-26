@@ -10,13 +10,13 @@ According to the Checklist, check whether the Rust code in the repository meets 
 ## Checklist
 
 - Naming (crate aligns with Rust naming conventions)
-  - [ ]  Casing conforms to RFC 430
-  - [ ] Ad-hoc conversions follow `as_`, `to_`, `into_` conventions
-  - [ ] Getter names follow Rust convention
-  - [ ] Methods on collections that produce iterators follow `iter`, `iter_mut`, `into_iter`
-  - [ ] Iterator type names match the methods that produce them
-  - [ ] Feature names are free of placeholder words
-  - [ ] Names use a consistent word order
+  - [ ]  Casing conforms to RFC 430 [(C-CASE)](./reference/naming/C-CASE.md)
+  - [ ] Ad-hoc conversions follow `as_`, `to_`, `into_` conventions [(C-CONV)](./reference/naming/C-CONV.md)
+  - [ ] Getter names follow Rust convention [(C-GETTER)](./reference/naming/C-GETTER.md)
+  - [ ] Methods on collections that produce iterators follow `iter`, `iter_mut`, `into_iter` [(C-ITER)](./reference/naming/C-ITER.md)
+  - [ ] Iterator type names match the methods that produce them [(C-ITER-TY)](./reference/naming/C-ITER-TY.md)
+  - [ ] Feature names are free of placeholder words [(C-FEATURE)](./reference/naming/C-FEATURE.md)
+  - [ ] Names use a consistent word order [(C-WORD-ORDER)](./reference/naming/C-WORD-ORDER.md)
 - Interoperability (crate interacts nicely with other library functionality)
   - [ ] Types eagerly implement common traits
     - `Copy`, `Clone`, `Eq`, `PartialEq`, `Ord`, `PartialOrd`, `Hash`, `Debug`, `Display`, `Default`
@@ -74,13 +74,16 @@ According to the Checklist, check whether the Rust code in the repository meets 
   - [ ] Newtypes encapsulate implementation details 
   - [ ] Data structures do not duplicate derived trait bounds
 - Necessities (to whom they matter, they really matter)
-  - [ ] Public dependencies of a stable crate are stable
-  - [ ] Crate and its dependencies have a permissive license
+  - [ ] Public dependencies of a stable crate are stable [(C-STABLE)](./reference/necessities/C-STABLE.md)
+  - [ ] Crate and its dependencies have a permissive license [(C-PERMISSIVE)](./reference/necessities/C-PERMISSIVE.md)
 
 
 ## WorkingFlow
 
 1. Every item in the checklist should be checked.
-2. The parentheses at the end of Checklist item may contain the detailed documentation for the corresponding rule.
-3. According to the checklist, generate a summary of the rust review.
-4. Only point out the parts that do not meet the Checklist requirements, provide reasons and suggestions for changes, without modifying the code.
+2. The parentheses at the end of every Checklist item contain the detailed documentation for the corresponding rule.
+3. If you cannot be sure what the rules mean, refer to the detailed documentation.
+4. If a rule is not applicable to the codebase, skip it.
+5. Only check the git diff for the changes to be reviewed.
+6. According to the checklist, generate a summary of the rust review.
+7. Only point out the parts that do not meet the Checklist requirements, provide reasons and suggestions for changes, without modifying the code.

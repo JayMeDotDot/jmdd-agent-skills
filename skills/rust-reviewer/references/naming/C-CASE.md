@@ -1,0 +1,28 @@
+# C-CASE
+
+In general, Rust tends to use `UpperCamelCase` for "type-level" constructs
+(types and traits) and `snake_case` for "value-level" constructs. More
+precisely, the proposed (and mostly followed) conventions are:
+
+| Item | Convention |
+| ---- | ---------- |
+| Crates | `snake_case` (but prefer single word) |
+| Modules | `snake_case` |
+| Types | `UpperCamelCase` |
+| Traits | `UpperCamelCase` |
+| Enum variants | `UpperCamelCase` |
+| Functions | `snake_case` |
+| Methods | `snake_case` |
+| General constructors | `new` or `with_more_details` |
+| Conversion constructors | `from_some_other_type` |
+| Local variables | `snake_case` |
+| Static variables | `SCREAMING_SNAKE_CASE` |
+| Constant variables | `SCREAMING_SNAKE_CASE` |
+| Type parameters | concise `UpperCamelCase`, usually single uppercase letter: `T` |
+| Lifetimes | short, lowercase: `'a` |
+
+In UpperCamelCase, acronyms and contractions of compound words count as one word: use Uuid rather than UUID, Usize rather than USize or Stdin rather than StdIn. In snake_case, acronyms and contractions are lower-cased: is_xid_start.
+
+In snake_case or SCREAMING_SNAKE_CASE, a "word" should never consist of a single letter unless it is the last "word". So, we have btree_map rather than b_tree_map, but PI_2 rather than PI2.
+
+Crate names should not use -rs or -rust as a suffix or prefix. Every crate is Rust! It serves no purpose to remind users of this constantly.
