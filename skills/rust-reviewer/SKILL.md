@@ -10,31 +10,31 @@ According to the Checklist, check whether the Rust code in the repository meets 
 ## Checklist
 
 - Naming (crate aligns with Rust naming conventions)
-  - [ ]  Casing conforms to RFC 430 [(C-CASE)](./reference/naming/C-CASE.md)
-  - [ ] Ad-hoc conversions follow `as_`, `to_`, `into_` conventions [(C-CONV)](./reference/naming/C-CONV.md)
-  - [ ] Getter names follow Rust convention [(C-GETTER)](./reference/naming/C-GETTER.md)
-  - [ ] Methods on collections that produce iterators follow `iter`, `iter_mut`, `into_iter` [(C-ITER)](./reference/naming/C-ITER.md)
-  - [ ] Iterator type names match the methods that produce them [(C-ITER-TY)](./reference/naming/C-ITER-TY.md)
-  - [ ] Feature names are free of placeholder words [(C-FEATURE)](./reference/naming/C-FEATURE.md)
-  - [ ] Names use a consistent word order [(C-WORD-ORDER)](./reference/naming/C-WORD-ORDER.md)
+  - [ ]  Casing conforms to RFC 430 [(C-CASE)](./references/naming/C-CASE.md)
+  - [ ] Ad-hoc conversions follow `as_`, `to_`, `into_` conventions [(C-CONV)](./references/naming/C-CONV.md)
+  - [ ] Getter names follow Rust convention [(C-GETTER)](./references/naming/C-GETTER.md)
+  - [ ] Methods on collections that produce iterators follow `iter`, `iter_mut`, `into_iter` [(C-ITER)](./references/naming/C-ITER.md)
+  - [ ] Iterator type names match the methods that produce them [(C-ITER-TY)](./references/naming/C-ITER-TY.md)
+  - [ ] Feature names are free of placeholder words [(C-FEATURE)](./references/naming/C-FEATURE.md)
+  - [ ] Names use a consistent word order [(C-WORD-ORDER)](./references/naming/C-WORD-ORDER.md)
 
 - Interoperability (crate interacts nicely with other library functionality)
   - [ ] Types eagerly implement common traits
-    - `Copy`, `Clone`, `Eq`, `PartialEq`, `Ord`, `PartialOrd`, `Hash`, `Debug`, `Display`, `Default` [(C-COMMON-TRAITS)](./reference/interoperability/C-COMMON-TRAITS.md)
-  - [ ] Conversions use the standard traits `From`, `AsRef`, `AsMut` [(C-CONV-TRAITS)](./reference/interoperability/C-CONV-TRAITS.md)
-  - [ ] Collections implement `FromIterator` and `Extend` [(C-COLLECT)](./reference/interoperability/C-COLLECT.md)
-  - [ ] Data structures implement Serde's `Serialize`, `Deserialize` [(C-SERDE)](./reference/interoperability/C-SERDE.md)
-  - [ ] Types are `Send` and `Sync` where possible [(C-SEND-SYNC)](./reference/interoperability/C-SEND-SYNC.md)
-  - [ ] Error types are meaningful and well-behaved [(C-GOOD-ERR)](./reference/interoperability/C-GOOD-ERR.md)
-  - [ ] Binary number types provide `Hex`, `Octal`, `Binary` formatting [(C-NUM-FMT)](./reference/interoperability/C-NUM-FMT.md)
-  - [ ] Generic reader/writer functions take `R: Read` and `W: Write` by value [(C-RW-VALUE)](./reference/interoperability/C-RW-VALUE.md)
+    - `Copy`, `Clone`, `Eq`, `PartialEq`, `Ord`, `PartialOrd`, `Hash`, `Debug`, `Display`, `Default` [(C-COMMON-TRAITS)](./references/interoperability/C-COMMON-TRAITS.md)
+  - [ ] Conversions use the standard traits `From`, `AsRef`, `AsMut` [(C-CONV-TRAITS)](./references/interoperability/C-CONV-TRAITS.md)
+  - [ ] Collections implement `FromIterator` and `Extend` [(C-COLLECT)](./references/interoperability/C-COLLECT.md)
+  - [ ] Data structures implement Serde's `Serialize`, `Deserialize` [(C-SERDE)](./references/interoperability/C-SERDE.md)
+  - [ ] Types are `Send` and `Sync` where possible [(C-SEND-SYNC)](./references/interoperability/C-SEND-SYNC.md)
+  - [ ] Error types are meaningful and well-behaved [(C-GOOD-ERR)](./references/interoperability/C-GOOD-ERR.md)
+  - [ ] Binary number types provide `Hex`, `Octal`, `Binary` formatting [(C-NUM-FMT)](./references/interoperability/C-NUM-FMT.md)
+  - [ ] Generic reader/writer functions take `R: Read` and `W: Write` by value [(C-RW-VALUE)](./references/interoperability/C-RW-VALUE.md)
 
 - Macros (crate presents well-behaved macros)
-  - [ ] Input syntax is evocative of the output 
-  - [ ] Macros compose well with attributes
-  - [ ] Item macros work anywhere that items are allowed
-  - [ ] Item macros support visibility specifiers
-  - [ ] Type fragments are flexible
+  - [ ] Input syntax is evocative of the output [(C-EVOCATIVE)](./references/macros/C-EVOCATIVE.md)
+  - [ ] Macros compose well with attributes [(C-MACRO-ATTR)](./references/macros/C-MACRO-ATTR.md)
+  - [ ] Item macros work anywhere that items are allowed [(C-ANYWHERE)](./references/macros/C-ANYWHERE.md)
+  - [ ] Item macros support visibility specifiers [(C-MACRO-VIS)](./references/macros/C-MACRO-VIS.md)
+  - [ ] Type fragments are flexible [(C-MACRO-TY)](./references/macros/C-MACRO-TY.md)
 
 - Documentation (crate is abundantly documented)
   - [ ] Crate level docs are thorough and include examples
@@ -84,8 +84,8 @@ According to the Checklist, check whether the Rust code in the repository meets 
   - [ ] Data structures do not duplicate derived trait bounds
 
 - Necessities (to whom they matter, they really matter)
-  - [ ] Public dependencies of a stable crate are stable [(C-STABLE)](./reference/necessities/C-STABLE.md)
-  - [ ] Crate and its dependencies have a permissive license [(C-PERMISSIVE)](./reference/necessities/C-PERMISSIVE.md)
+  - [ ] Public dependencies of a stable crate are stable [(C-STABLE)](./references/necessities/C-STABLE.md)
+  - [ ] Crate and its dependencies have a permissive license [(C-PERMISSIVE)](./references/necessities/C-PERMISSIVE.md)
 
 
 ## WorkingFlow
