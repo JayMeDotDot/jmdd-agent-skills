@@ -37,15 +37,15 @@ According to the Checklist, check whether the Rust code in the repository meets 
   - [ ] Type fragments are flexible [(C-MACRO-TY)](./references/macros/C-MACRO-TY.md)
 
 - Documentation (crate is abundantly documented)
-  - [ ] Crate level docs are thorough and include examples
-  - [ ] All items have a rustdoc example
-  - [ ] Examples use `?`, not `try!`, not `unwrap`
-  - [ ] Function docs include error, panic, and safety considerations
-  - [ ] Prose contains hyperlinks to relevant things
+  - [ ] Crate level docs are thorough and include examples [(C-CRATE-DOC)](./references/documentation/C-CRATE-DOC.md)
+  - [ ] All items have a rustdoc example [(C-EXAMPLE)](./references/documentation/C-EXAMPLE.md)
+  - [ ] Examples use `?`, not `try!`, not `unwrap` [(C-QUESTION-MARK)](./references/documentation/C-QUESTION-MARK.md)
+  - [ ] Function docs include error, panic, and safety considerations [(C-FAILURE)](./references/documentation/C-FAILURE.md)
+  - [ ] Prose contains hyperlinks to relevant things [(C-LINK)](./references/documentation/C-LINK.md)
   - [ ] Cargo.toml includes all common metadata
-    - authors, description, license, homepage, documentation, repository, keywords, categories
-  - [ ] Release notes document all significant changes
-  - [ ] Rustdoc does not show unhelpful implementation details
+    - authors, description, license, homepage, documentation, repository, keywords, categories [(C-METADATA)](./references/documentation/C-METADATA.md)
+  - [ ] Release notes document all significant changes [(C-RELNOTES)](./references/documentation/C-RELNOTES.md)
+  - [ ] Rustdoc does not show unhelpful implementation details [(C-HIDDEN)](./references/documentation/C-HIDDEN.md)
 
 - Predictability (crate enables legible code that acts how it looks)
   - [ ] Smart pointers do not add inherent methods
