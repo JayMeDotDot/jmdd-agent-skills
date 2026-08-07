@@ -48,40 +48,40 @@ According to the Checklist, check whether the Rust code in the repository meets 
   - [ ] Rustdoc does not show unhelpful implementation details [(C-HIDDEN)](./references/documentation/C-HIDDEN.md)
 
 - Predictability (crate enables legible code that acts how it looks)
-  - [ ] Smart pointers do not add inherent methods
-  - [ ] Conversions live on the most specific type involved 
-  - [ ] Functions with a clear receiver are methods
-  - [ ] Functions do not take out-parameters
-  - [ ] Operator overloads are unsurprising
-  - [ ] Only smart pointers implement `Deref` and `DerefMut`
-  - [ ] Constructors are static, inherent methods
+  - [ ] Smart pointers do not add inherent methods [(C-SMART-PTR)](./references/predictability/C-SMART-PTR.md)
+  - [ ] Conversions live on the most specific type involved [(C-CONV-SPECIFIC)](./references/predictability/C-CONV-SPECIFIC.md)
+  - [ ] Functions with a clear receiver are methods [(C-METHOD)](./references/predictability/C-METHOD.md)
+  - [ ] Functions do not take out-parameters [(C-NO-OUT)](./references/predictability/C-NO-OUT.md)
+  - [ ] Operator overloads are unsurprising [(C-OVERLOAD)](./references/predictability/C-OVERLOAD.md)
+  - [ ] Only smart pointers implement `Deref` and `DerefMut` [(C-DEREF)](./references/predictability/C-DEREF.md)
+  - [ ] Constructors are static, inherent methods [(C-CTOR)](./references/predictability/C-CTOR.md)
 
 - Flexibility (crate supports diverse real-world use cases)
-  - [ ] Functions expose intermediate results to avoid duplicate work
-  - [ ] Caller decides where to copy and place data
-  - [ ] Functions minimize assumptions about parameters by using generics
-  - [ ] Traits are object-safe if they may be useful as a trait object
+  - [ ] Functions expose intermediate results to avoid duplicate work [(C-INTERMEDIATE)](./references/flexibility/C-INTERMEDIATE.md)
+  - [ ] Caller decides where to copy and place data [(C-CALLER-CONTROL)](./references/flexibility/C-CALLER-CONTROL.md)
+  - [ ] Functions minimize assumptions about parameters by using generics [(C-GENERIC)](./references/flexibility/C-GENERIC.md)
+  - [ ] Traits are object-safe if they may be useful as a trait object [(C-OBJECT)](./references/flexibility/C-OBJECT.md)
 
 - Type safety (crate leverages the type system effectively)
-  - [ ] Newtypes provide static distinctions
-  - [ ] Arguments convey meaning through types, not bool or Option
-  - [ ] Types for a set of flags are bitflags, not enums
-  - [ ] Builders enable construction of complex values
+  - [ ] Newtypes provide static distinctions [(C-NEWTYPE)](./references/type-safty/C-NEWTYPE.md)
+  - [ ] Arguments convey meaning through types, not bool or Option [(C-CUSTOM-TYPE)](./references/type-safty/C-CUSTOM-TYPE.md)
+  - [ ] Types for a set of flags are bitflags, not enums [(C-BITFLAG)](./references/type-safty/C-BITFLAG.md)
+  - [ ] Builders enable construction of complex values [(C-BUILDER)](./references/type-safty/C-BUILDER.md)
 
 - Dependability (crate is unlikely to do the wrong thing)
-  - [ ] Functions validate their arguments
-  - [ ] Destructors never fail
-  - [ ] Destructors that may block have alternatives 
+  - [ ] Functions validate their arguments [(C-VALIDATE)](./references/dependability/C-VALIDATE.md)
+  - [ ] Destructors never fail [(C-DTOR-FAIL)](./references/dependability/C-DTOR-FAIL.md)
+  - [ ] Destructors that may block have alternatives [(C-DTOR-BLOCK)](./references/dependability/C-DTOR-BLOCK.md)
 
 - Debuggability (crate is conducive to easy debugging)
-  - [ ] All public types implement Debug
-  - [ ] `Debug` representation is never empty 
+  - [ ] All public types implement Debug [(C-DEBUG)](./references/debuggability/C-DEBUG.md)
+  - [ ] `Debug` representation is never empty [(C-DEBUG-NONEMPTY)](./references/debuggability/C-DEBUG-NONEMPTY.md)
 
 - Future proofing (crate is free to improve without breaking users' code)
-  - [ ] Sealed traits protect against downstream implementations
-  - [ ] Structs have private fields 
-  - [ ] Newtypes encapsulate implementation details 
-  - [ ] Data structures do not duplicate derived trait bounds
+  - [ ] Sealed traits protect against downstream implementations [(C-SEALED)](./references/future-proofing/C-SEALED.md)
+  - [ ] Structs have private fields [(C-STRUCT-PRIVATE)](./references/future-proofing/C-STRUCT-PRIVATE.md)
+  - [ ] Newtypes encapsulate implementation details [(C-NEWTYPE-HIDE)](./references/future-proofing/C-NEWTYPE-HIDE.md)
+  - [ ] Data structures do not duplicate derived trait bounds [(C-STRUCT-BOUNDS)](./references/future-proofing/C-STRUCT-BOUNDS.md)
 
 - Necessities (to whom they matter, they really matter)
   - [ ] Public dependencies of a stable crate are stable [(C-STABLE)](./references/necessities/C-STABLE.md)
